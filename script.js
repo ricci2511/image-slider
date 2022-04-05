@@ -14,6 +14,19 @@ const getTransformOfLastImage = () => {
     return (sliderImages.length * (-100)) + 100;
 }
 
+// private counter variable
+const initTransformCounter = () => {
+    let count = 0;
+    return {
+        getCounter: () => count,
+        setCounter: (value) => count = value,
+        increment: () => count += 100,
+        decrement: () => count -= 100,
+    };
+};
+
+const transformCounter = initTransformCounter();
+
 const setActiveNavigationDot = () => {
     // spread operator to convert nodelist to array
     const dots = [...document.querySelectorAll('.dot')];
@@ -33,19 +46,6 @@ const setWrapperTransform = (value) => {
     // update active dot when switching images
     setActiveNavigationDot();
 };
-
-// private counter variable
-const initTransformCounter = () => {
-    let count = 0;
-    return {
-        getCounter: () => count,
-        setCounter: (value) => count = value,
-        increment: () => count += 100,
-        decrement: () => count -= 100,
-    };
-};
-
-const transformCounter = initTransformCounter();
 
 const displayNextImage = () => {
     return (transformCounter.getCounter() === getTransformOfLastImage()) 
